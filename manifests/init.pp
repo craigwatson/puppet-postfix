@@ -59,6 +59,8 @@
 #
 # [*use_sympa*]           - (boolean) Whether to setup for Sympa
 #
+# [*use_spamassassin*]    - (boolean) Whether to setup for SpamAssassin
+#
 # === Examples
 #
 #   class { 'postfix':
@@ -92,6 +94,9 @@ class postfix (
   $use_dovecot_lda     = false,         # postfix_use_dovecot_lda
   $use_schleuder       = false,         # postfix_use_schleuder
   $use_sympa           = false,         # postfix_use_sympa
+  $use_spamassassin    = false,         # postfix_use_spamassassin
+  $spamassassin_port   = '783',
+  $spamassassin_server = '127.0.01'
 ) inherits postfix::params {
 
 
@@ -103,6 +108,7 @@ class postfix (
   validate_bool($use_dovecot_lda)
   validate_bool($use_schleuder)
   validate_bool($use_sympa)
+  validate_bool($use_spamassassin)
 
   validate_string($alias_maps)
   validate_string($inet_interfaces)
