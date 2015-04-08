@@ -11,6 +11,9 @@
 # ==========================================================================                                                                                                                                                                 
 <% if @smtp_listen == 'all' -%>
 smtp      inet  n       -       n       -       -       smtpd
+<% if @use_spamassassin %>
+   -o content_filter=spamassassin
+<% end -%>
 <% else -%>
 <%= @smtp_listen %>:smtp      inet  n       -       n       -       -       smtpd
 <% end -%>
