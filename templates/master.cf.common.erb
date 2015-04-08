@@ -2,7 +2,7 @@
 spamassassin unix -     n       n       -       -       pipe
         user=spamd
         flags=Rq
-        argv=/usr/bin/spamc --dest=<%= @spamassassin_server %> --port=<%= @spamassassin_port' %> -u ${recipient} -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
+        argv=/usr/bin/spamc --dest=<%= @spamassassin_server %> --port=<%= @spamassassin_port %> -u ${recipient} -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
 <% end -%>
 <% if @use_amavisd %>
 amavis unix - - - - 2 smtp
