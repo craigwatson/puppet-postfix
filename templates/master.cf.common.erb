@@ -1,7 +1,7 @@
 <% if @use_spamassassin %>
 spamassassin unix -     n       n       -       -       pipe
-        user=spamd
-        flags=Rq
+        user=<%= @spamassassin_user %>
+        flags=<%= @spamassassin_flags %>
         argv=/usr/bin/spamc --dest=<%= @spamassassin_server %> --port=<%= @spamassassin_port %> -u ${recipient} -e /usr/sbin/sendmail -oi -f ${sender} ${recipient}
 <% end -%>
 <% if @use_amavisd %>
