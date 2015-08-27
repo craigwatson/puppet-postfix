@@ -98,7 +98,7 @@ class postfix (
   $spamassassin_port   = '783',
   $spamassassin_server = '127.0.0.1',
   $spamassassin_user   = 'spamd',
-  $spamassassin_flags  = 'Rq'
+  $spamassassin_flags  = 'Rq',
   $always_bcc          = undef,
 ) inherits postfix::params {
 
