@@ -96,7 +96,7 @@ class postfix (
   $use_sympa           = false,         # postfix_use_sympa
   $use_spamassassin    = false,         # postfix_use_spamassassin
   $spamassassin_port   = '783',
-  $spamassassin_server = '127.0.01',
+  $spamassassin_server = '127.0.0.1',
   $spamassassin_user   = 'spamd',
   $spamassassin_flags  = 'Rq'
 ) inherits postfix::params {
