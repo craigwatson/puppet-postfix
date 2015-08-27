@@ -15,7 +15,6 @@ class postfix::files {
   $use_dovecot_lda     = $postfix::use_dovecot_lda
   $use_schleuder       = $postfix::use_schleuder
   $use_sympa           = $postfix::use_sympa
-  $always_bcc          = $postfix::always_bcc
 
   File {
     replace => $manage_conffiles,
@@ -78,12 +77,6 @@ class postfix::files {
     'alias_maps':       value => $alias_maps;
     'inet_interfaces':  value => $inet_interfaces;
     'myorigin':         value => $myorigin;
-  }
-
-  if $always_bcc != undef {
-    ::postfix::config { 'always_bcc':
-      value => $always_bcc,
-    }
   }
 
   case $::osfamily {

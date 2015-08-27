@@ -99,7 +99,6 @@ class postfix (
   $spamassassin_server = '127.0.0.1',
   $spamassassin_user   = 'spamd',
   $spamassassin_flags  = 'Rq'
-  $always_bcc          = undef,
 ) inherits postfix::params {
 
 
@@ -131,6 +130,8 @@ class postfix (
     validate_string($root_mail_recipient)
   }
   validate_string($smtp_listen)
+
+
 
   $_smtp_listen = $mailman ? {
     true    => '0.0.0.0',
