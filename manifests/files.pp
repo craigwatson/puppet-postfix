@@ -15,6 +15,7 @@ class postfix::files {
   $use_dovecot_lda     = $postfix::use_dovecot_lda
   $use_schleuder       = $postfix::use_schleuder
   $use_sympa           = $postfix::use_sympa
+  $use_spamassassin    = $postfix::use_spamassassin
 
   File {
     replace => $manage_conffiles,
