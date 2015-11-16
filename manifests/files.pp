@@ -16,6 +16,10 @@ class postfix::files {
   $use_schleuder       = $postfix::use_schleuder
   $use_sympa           = $postfix::use_sympa
   $use_spamassassin    = $postfix::use_spamassassin
+  $spamassassin_port   = $postfix::spamassassin_port
+  $spamassassin_server = $postfix::spamassassin_server
+  $spamassassin_user   = $postfix::spamassassin_user
+  $spamassassin_flags  = $postfix::spamassassin_flags
 
   File {
     replace => $manage_conffiles,
