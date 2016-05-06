@@ -61,6 +61,10 @@
 #
 # [*use_spamassassin*]    - (boolean) Whether to setup for SpamAssassin
 #
+# [*postfix_ensure*]      - (string) The ensure value of the postfix package
+#
+# [*mailx_ensure*]        - (string) The ensure value of the mailx package
+#
 # === Examples
 #
 #   class { 'postfix':
@@ -98,7 +102,9 @@ class postfix (
   $spamassassin_port   = '783',
   $spamassassin_server = '127.0.0.1',
   $spamassassin_user   = 'spamd',
-  $spamassassin_flags  = 'Rq'
+  $spamassassin_flags  = 'Rq',
+  $postfix_ensure      = 'present',
+  $mailx_ensure        = 'present',
 ) inherits postfix::params {
 
 

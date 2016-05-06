@@ -1,8 +1,15 @@
 class postfix::params {
   case $::osfamily {
     'RedHat': {
+      $aliasesseltype = $::operatingsystemmajrelease ? {
+        '4'     => 'etc_t',
+        /5/     => 'postfix_etc_t',
+        /6|7/   => 'etc_aliases_t',
+        default => undef,
+      }
+
       $seltype = $::operatingsystemmajrelease ? {
-        '4'   => 'etc_t',
+        '4'     => 'etc_t',
         /5|6|7/ => 'postfix_etc_t',
         default => undef,
       }
@@ -18,6 +25,7 @@ class postfix::params {
     }
 
     'Debian': {
+      $aliasesseltype = undef
       $seltype = undef
 
       $restart_cmd = '/etc/init.d/postfix reload'
@@ -33,15 +41,15 @@ class postfix::params {
     'Suse': {
       $seltype = undef
 
-      $restart_cmd = '/etc/init.d/postfix reload'
-
       $mailx_package = 'mailx'
 
-      if $::operatingsystem != 'SLES' {
-        fail "Unsupported OS '${::operatingsystem}'"
+      if $::operatingsystemmajrelease == '11' {
+        $restart_cmd = '/etc/init.d/postfix reload'
+        $master_os_template = "${module_name}/master.cf.${::operatingsystem}${::operatingsystemrelease}.erb"
+      } else {
+        $restart_cmd = '/usr/bin/systemctl reload postfix'
+        $master_os_template = "${module_name}/master.cf.sles.erb"
       }
-
-      $master_os_template = "${module_name}/master.cf.${::operatingsystem}${::operatingsystemrelease}.erb"
     }
 
     default: {
